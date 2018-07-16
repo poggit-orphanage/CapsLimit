@@ -58,7 +58,7 @@ class CapsLimit extends PluginBase implements Listener{
      * @param array $args
      * @return bool
      */
-    public function onCommand(CommandSender $sender, Command $command, $commandAlias, array $args){
+    public function onCommand(CommandSender $sender, Command $command, String $commandAlias, array $args): bool {
         if(!$sender->hasPermission("capslimit.set")){
             return false;
         }
@@ -101,7 +101,7 @@ class CapsLimit extends PluginBase implements Listener{
         if(!$player->hasPermission("capslimit.exception")){
             if ($count > $this->getMaxCaps() and $this->getConfig()->get("mode") == "block") {
                 $event->setCancelled(true);
-                $player->sendMessage($this->getPrefix().TextFormat::RED."You used too much caps!");
+                $player->sendMessage($this->getPrefix().TextFormat::RED."You used too many caps!");
             }
             elseif($count > $this->getMaxCaps() and $this->getConfig()->get("mode") === "lowercase"){
                 $event->setMessage(strtolower($message));
